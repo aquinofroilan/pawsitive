@@ -29,15 +29,10 @@ export class ButtonComponent implements AfterContentInit {
     buttonLoading = false;
 
     ngAfterContentInit(): void {
-        if (this.label === null && this.icon === null) {
-            throw new Error("Button must have either a label or an icon.");
-        }
-        if (this.icon !== null && !this.ariaLabel) {
-            throw new Error("Button with an icon must have an aria-label.");
-        }
-        if (this.iconPosition !== "left" && this.iconPosition !== "right") {
+        if (this.label === null && this.icon === null) throw new Error("Button must have either a label or an icon.");
+        if (this.icon !== null && !this.ariaLabel) throw new Error("Button with an icon must have an aria-label.");
+        if (this.iconPosition !== "left" && this.iconPosition !== "right")
             throw new Error("Button icon position must be either 'left' or 'right'.");
-        }
 
         this.label = this.label || null;
         this.icon = this.icon || null;
