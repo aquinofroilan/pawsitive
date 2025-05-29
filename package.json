@@ -1,6 +1,9 @@
 {
     "name": "pawsitive",
     "version": "0.0.0",
+    "author": "Froilan",
+    "license": "MIT",
+    "description": "A Pawsitive Angular application",
     "scripts": {
         "ng": "ng",
         "start": "ng serve",
