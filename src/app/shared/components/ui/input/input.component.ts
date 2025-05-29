@@ -1,10 +1,22 @@
 import { Component, Input, type AfterContentInit } from "@angular/core";
+import { CommonModule } from "@angular/common";
 
 @Component({
     selector: "app-input",
-    imports: [],
-    templateUrl: "./input.component.html",
+    imports: [CommonModule],
     styleUrl: "./input.component.css",
+    template: `
+        <input
+            [class]="inputError ? 'input-error' : ''"
+            [type]="inputType"
+            [placeholder]="inputPlaceholder"
+            [value]="inputValue"
+            [disabled]="inputDisabled"
+            [required]="inputRequired"
+            [readonly]="inputReadonly"
+            [ngClass]="inputSize"
+        />
+    `,
 })
 export class InputComponent implements AfterContentInit {
     @Input() type: "text" | "email" | "password" | "number" | "tel" = "text";
