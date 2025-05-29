@@ -30,8 +30,8 @@ jobs:
               uses: actions/cache@v3
               with:
                   path: |
-                    node_modules
-                    ~/.npm
+                      node_modules
+                      ~/.npm
                   key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
 
             - name: Install Dependencies
@@ -39,15 +39,14 @@ jobs:
                   sudo apt-get update
                   sudo apt-get install -y wget google-chrome-stable xvfb
             - run: npm ci
-
             - run: npm run lint
 
             - run: npm run build --if-present
 
             - name: Run tests
               env:
-                CI: true
+                  CI: true
               run: |
                   Xvfb :99 -ac &
                   export DISPLAY=:99
-                  npm test
+                  npm test --watch=false --browsers=ChromeHeadless
