@@ -10,6 +10,7 @@
         "build": "ng build",
         "watch": "ng build --watch --configuration development",
         "test": "ng test",
+        "test:ci": "ng test --watch=false --browsers=ChromeHeadless",
         "format": "prettier --write \"src/**/*.{ts,html,css,scss}\"",
         "lint": "ng lint",
         "e2e": "ng e2e"
