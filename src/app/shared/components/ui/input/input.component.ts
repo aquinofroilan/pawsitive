@@ -21,7 +21,7 @@ import { CommonModule } from "@angular/common";
 export class InputComponent implements AfterContentInit {
     @Input() type: "text" | "email" | "password" | "number" | "tel" = "text";
     @Input() placeholder: string | null = null;
-    @Input() value: string | null = null;
+    @Input() value = "";
     @Input() disabled = false;
     @Input() required = false;
     @Input() readonly = false;
