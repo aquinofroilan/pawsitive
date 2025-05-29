@@ -1,10 +1,34 @@
 import { Component, Input, type AfterContentInit } from "@angular/core";
+import { CommonModule } from "@angular/common";
 
 @Component({
     selector: "app-button",
-    imports: [],
-    templateUrl: "./button.component.html",
+    imports: [CommonModule],
     styleUrl: "./button.component.css",
+    template: ` <button
+        [attr.type]="buttonType"
+        [attr.size]="buttonSize"
+        [attr.variant]="buttonVariant"
+        [attr.disabled]="buttonDisabled ? true : null"
+        [attr.aria-label]="buttonAriaLabel"
+        [class.loading]="buttonLoading"
+        class="app-button"
+        [ngClass]="{
+            'app-button-xs': buttonSize === 'xs',
+            'app-button-sm': buttonSize === 'sm',
+            'app-button-md': buttonSize === 'md',
+            'app-button-lg': buttonSize === 'lg',
+            'app-button-primary': buttonVariant === 'primary',
+            'app-button-secondary': buttonVariant === 'secondary',
+            'app-button-tertiary': buttonVariant === 'tertiary',
+            'app-button-disabled': buttonDisabled,
+            'app-button-loading': buttonLoading,
+            'app-button-icon-left': buttonIconPosition === 'left',
+            'app-button-icon-right': buttonIconPosition === 'right',
+        }"
+    >
+        <ng-content></ng-content>
+    </button>`,
 })
 export class ButtonComponent implements AfterContentInit {
     @Input() size: "xs" | "sm" | "md" | "lg" = "md";
