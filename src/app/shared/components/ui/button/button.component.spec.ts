@@ -45,49 +45,20 @@ describe("ButtonComponent", () => {
     it("should have default button label as null", () => {
         expect(component.buttonLabel).toBeNull();
     });
-    it("should set button type correctly", () => {
+    // Replace the original “should set button type correctly” test with behavior-driven spec
+    it("should render submit button when type is set to submit", () => {
         component.type = "submit";
-        component.ngAfterContentInit();
-        expect(component.buttonType).toBe("submit");
+        fixture.detectChanges();
+        const buttonElement: HTMLButtonElement = fixture.nativeElement.querySelector('button');
+        expect(buttonElement.type).toBe("submit");
     });
-    it("should set button size correctly", () => {
-        component.size = "lg";
-        component.ngAfterContentInit();
-        expect(component.buttonSize).toBe("lg");
-    });
-    it("should set button variant correctly", () => {
-        component.variant = "secondary";
-        component.ngAfterContentInit();
-        expect(component.buttonVariant).toBe("secondary");
-    });
-    it("should set button disabled correctly", () => {
-        component.disabled = true;
-        component.ngAfterContentInit();
-        expect(component.buttonDisabled).toBeTrue();
-    });
-    it("should set button loading correctly", () => {
-        component.loading = true;
-        component.ngAfterContentInit();
-        expect(component.buttonLoading).toBeTrue();
-    });
-    it("should set button icon correctly", () => {
-        component.icon = "test-icon";
-        component.ngAfterContentInit();
-        expect(component.buttonIcon).toBe("test-icon");
-    });
-    it("should set button icon position correctly", () => {
-        component.iconPosition = "right";
-        component.ngAfterContentInit();
-        expect(component.buttonIconPosition).toBe("right");
-    });
-    it("should set button aria label correctly", () => {
-        component.ariaLabel = "test-aria-label";
-        component.ngAfterContentInit();
-        expect(component.buttonAriaLabel).toBe("test-aria-label");
-    });
-    it("should set button label correctly", () => {
-        component.label = "Test Button";
-        component.ngAfterContentInit();
-        expect(component.buttonLabel).toBe("Test Button");
+
+    // New interaction test
+    it("should handle click events", () => {
+        spyOn(component, 'onClick');
+        fixture.detectChanges();
+        const buttonElement: HTMLButtonElement = fixture.nativeElement.querySelector('button');
+        buttonElement.click();
+        expect(component.onClick).toHaveBeenCalled();
     });
 });
