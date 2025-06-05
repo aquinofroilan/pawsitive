@@ -4,8 +4,8 @@ import { RouterOutlet } from "@angular/router";
 @Component({
     selector: "app-root",
     imports: [RouterOutlet],
-    templateUrl: "./app.component.html",
     styleUrl: "./app.component.css",
+    template: ` <main class="main min-h-screen w-full"><router-outlet /></main> `,
 })
 export class AppComponent {
     title = "pawsitive";
