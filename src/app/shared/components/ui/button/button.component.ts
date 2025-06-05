@@ -1,4 +1,4 @@
-import { Component, Input, type AfterContentInit } from "@angular/core";
+import { Component, EventEmitter, Input, Output, type AfterContentInit } from "@angular/core";
 import { CommonModule } from "@angular/common";
 
 @Component({
@@ -26,6 +26,7 @@ import { CommonModule } from "@angular/common";
             'app-button-icon-left': buttonIconPosition === 'left',
             'app-button-icon-right': buttonIconPosition === 'right',
         }"
+        (click)="onClick($event)"
     >
         <ng-content></ng-content>
     </button>`,
@@ -41,6 +42,7 @@ export class ButtonComponent implements AfterContentInit {
     @Input() iconPosition: "left" | "right" = "left";
     @Input() ariaLabel: string | null = null;
     @Input() label: string | null = null;
+    @Output() buttonClick = new EventEmitter<MouseEvent>();
 
     buttonLabel: string | null = null;
     buttonIcon: string | null = null;
@@ -51,6 +53,12 @@ export class ButtonComponent implements AfterContentInit {
     buttonVariant: "primary" | "secondary" | "tertiary" = "primary";
     buttonDisabled = false;
     buttonLoading = false;
+
+    onClick(event: MouseEvent): void {
+        if (!this.buttonDisabled && !this.buttonLoading) {
+            this.buttonClick.emit(event);
+        }
+    }
 
     ngAfterContentInit(): void {
         this.buttonType = this.type;

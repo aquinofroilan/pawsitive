@@ -45,20 +45,37 @@ describe("ButtonComponent", () => {
     it("should have default button label as null", () => {
         expect(component.buttonLabel).toBeNull();
     });
-    // Replace the original “should set button type correctly” test with behavior-driven spec
-    it("should render submit button when type is set to submit", () => {
-        component.type = "submit";
-        fixture.detectChanges();
-        const buttonElement: HTMLButtonElement = fixture.nativeElement.querySelector('button');
-        expect(buttonElement.type).toBe("submit");
+
+    it("should emit buttonClick event when clicked", () => {
+        spyOn(component.buttonClick, "emit");
+        const buttonElement: HTMLButtonElement = fixture.nativeElement.querySelector("button");
+        buttonElement.click();
+        expect(component.buttonClick.emit).toHaveBeenCalled();
     });
 
-    // New interaction test
-    it("should handle click events", () => {
-        spyOn(component, 'onClick');
+    it("should not emit buttonClick when disabled", () => {
+        component.disabled = true;
+        component.ngAfterContentInit(); // Update internal state
         fixture.detectChanges();
-        const buttonElement: HTMLButtonElement = fixture.nativeElement.querySelector('button');
+
+        spyOn(component.buttonClick, "emit");
+        const buttonElement: HTMLButtonElement = fixture.nativeElement.querySelector("button");
+
         buttonElement.click();
-        expect(component.onClick).toHaveBeenCalled();
+
+        expect(component.buttonClick.emit).not.toHaveBeenCalled();
+    });
+
+    it("should not emit buttonClick when loading", () => {
+        component.loading = true;
+        component.ngAfterContentInit(); // Update internal state
+        fixture.detectChanges();
+
+        spyOn(component.buttonClick, "emit");
+        const buttonElement: HTMLButtonElement = fixture.nativeElement.querySelector("button");
+
+        buttonElement.click();
+
+        expect(component.buttonClick.emit).not.toHaveBeenCalled();
     });
 });
