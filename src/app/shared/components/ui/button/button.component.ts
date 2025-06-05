@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, Output, type AfterContentInit } from "@angular/core";
 import { CommonModule } from "@angular/common";
-
 @Component({
     selector: "app-button",
     imports: [CommonModule],
