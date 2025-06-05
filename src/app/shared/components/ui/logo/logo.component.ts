@@ -4,7 +4,7 @@ import { Component } from "@angular/core";
     selector: "app-logo",
     styleUrl: "./logo.component.css",
     template: `
-        <div class="logo-container">
+        <div class="flex items-center gap-2">
             <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
