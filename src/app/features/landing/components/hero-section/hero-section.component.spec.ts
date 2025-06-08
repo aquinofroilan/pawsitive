@@ -1,23 +1,23 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { HeroSectionComponent } from "./hero-section.component";
+import { ActivatedRoute } from "@angular/router";
 
-import { HeroSectionComponent } from './hero-section.component';
+describe("HeroSectionComponent", () => {
+    let component: HeroSectionComponent;
+    let fixture: ComponentFixture<HeroSectionComponent>;
 
-describe('HeroSectionComponent', () => {
-  let component: HeroSectionComponent;
-  let fixture: ComponentFixture<HeroSectionComponent>;
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
+            imports: [HeroSectionComponent],
+            providers: [{ provide: ActivatedRoute, useValue: { snapshot: { data: {} } } }],
+        }).compileComponents();
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [HeroSectionComponent]
-    })
-    .compileComponents();
+        fixture = TestBed.createComponent(HeroSectionComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+    });
 
-    fixture = TestBed.createComponent(HeroSectionComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    it("should create", () => {
+        expect(component).toBeTruthy();
+    });
 });
